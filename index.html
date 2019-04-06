@@ -1,0 +1,52 @@
+</!DOCTYPE html>
+<html>
+<head>
+	<title>Game</title>
+	<style>
+		canvas{
+		background: #ef4;
+		display: block;
+		margin: 0 auto;
+	}
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="630"> </canvas>
+
+<script>
+    var canvas = document.getElementById("canvas");
+    //drawing context object
+    var ctx = canvas.getContext("2d");
+
+    var x = canvas.width / 2;
+    var y = canvas.height - 30;
+
+    var dx = 2;
+    var dy = -2;
+
+
+ function draw() {
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+ ctx.beginPath();
+
+
+
+ ctx.beginPath();
+ ctx.arc(x, y, 20, 0, Math.PI*2, false);
+ ctx.fillStyle = "#bfe2ff"
+ ctx.fill();
+ ctx.closePath();
+ x += dx;
+ y += dy;
+
+}
+
+
+setInterval(draw, -10) 
+
+ 
+</script>
+
+</body>
+</html>
