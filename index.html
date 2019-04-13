@@ -4,7 +4,7 @@
 	<title>Game</title>
 	<style>
 		canvas{
-		background: #ef4;
+		background: #white;
 		display: block;
 		margin: 0 auto;
 	}
@@ -12,39 +12,64 @@
 </head>
 <body>
 
-<canvas id="canvas" width="800" height="630"> </canvas>
+<canvas id="canvas" width="500" height="500"> </canvas>
 
 <script>
     var canvas = document.getElementById("canvas");
     //drawing context object
     var ctx = canvas.getContext("2d");
+    var x =50;
+    var y = 450;
+    var dx = 0;
+    var dy = -5;
 
-    var x = canvas.width / 2;
-    var y = canvas.height - 30;
-
-    var dx = 2;
-    var dy = -2;
+    var sides = false;
+    var color_index = 0;
+    var colors = ['#c8f442','#42f49e','#7442f4','#00e9f9','#ff7cf1']
+    
 
 
  function draw() {
- ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
  ctx.beginPath();
-
-
-
  ctx.beginPath();
- ctx.arc(x, y, 20, 0, Math.PI*2, false);
- ctx.fillStyle = "#bfe2ff"
+ ctx.arc(x, y, 15, 0, Math.PI*2, false);
+ ctx.fillStyle = colors [color_index];
  ctx.fill();
  ctx.closePath();
  x += dx;
  y += dy;
 
+ if(y == 50) {
+    sides = true;
+ 	dx = 5;
+ 	dy = 0;
+ }
+
+ if (x == 450) {
+ 	dy = 5;
+ 	dx = 0;
+ }
+
+ if (y == 450) {
+ 	sides = true;
+ 	dy = 0;
+ 	dx = -5;
+ }
+
+ if (y == 450 && x == 50 && sides == true) {
+ 	dx = 0;
+ 	dy = -5;
+ 	sides = false;
+ 	color_index += 1
+ }
+
+ if (color_index > colors.length-1){
+ 	 color_index = 0;
+ }
+
 }
-
-
-setInterval(draw, -10) 
-
+setInterval(draw, -3) 
  
 </script>
 
